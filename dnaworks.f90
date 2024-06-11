@@ -51,6 +51,7 @@ PROGRAM dnaworks
   CALL FLUSH(console)
 
   CALL Run_Dnaworks()
+  CALL Print_Overlaps_Array(outputnum)
 
   CALL Print_Final_Tally(console)
   CALL Print_Output_End(console)

@@ -1776,6 +1776,16 @@ SUBROUTINE Read_Parameters
 
     IF (INDEX(InputArrayUC(i),'QUIET').gt.0) QUIET=.TRUE. 
 
+! ! keyword : INPUTFILE
+! !   "<str>" = inputfile
+!     IF (INDEX(InputArrayUC(i),'INPUTFILE').eq.1) THEN
+!       i1=INDEX(InputArrayUC(i),'INPUTFILE')
+!       IF (i1.gt.0) THEN
+!         READ(InputArray(i)(i1:length),*,IOSTAT=ierr) a1,a2
+!         IF (ierr.eq.0) inputfile=a2
+!       END IF
+!     END IF ! inputfile block
+
 ! keyword: LOGFILE
 !   "<str>" = outputfile
 

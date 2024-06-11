@@ -4,7 +4,7 @@ SUBROUTINE Get_Args
   USE dnaworks_test
   IMPLICIT NONE
 
-  CHARACTER(LEN=30) :: ARGV(100) ! command line arguments
+  CHARACTER(LEN=256) :: ARGV(100) ! command line arguments
   INTEGER :: ARGC                 ! number of command line arguments
   INTEGER :: i,j
 
@@ -43,7 +43,6 @@ SUBROUTINE Get_Args
     ELSE
 
 ! Assign inputfile from ARGV(1) if possible
-
       inputfile=ARGV(i)
     END IF
   END DO
@@ -107,7 +106,10 @@ SUBROUTINE Oligo_Design(SolutionNo,num)
       IF (PROTlen.gt.0) CALL Mutate_Sequence  ! only mutate protein sequence
       main_count=main_count+1
 
+      ! --------------------------------------------------------------------------------------------------
+      ! run Generate_Overlaps
       CALL Generate_Overlaps(SolutionNo) ! Generate overlaps for the mutated sequence
+      ! --------------------------------------------------------------------------------------------------
   
       IF (MOD(CurrDNA%NumOlaps,2).eq.0) CALL Stop_Program("Even number of overlaps.  Try adjusting parameters.")
 
@@ -213,7 +215,10 @@ SUBROUTINE Run_Dnaworks()
         CALL Print_Param_Log(outputnum,CurrSolutionNo)
         CALL FLUSH(console)
 
+        ! --------------------------------------------------------------------------------------------------
+        ! The first time to run Generate_Overlaps In the whole program 
         CALL Generate_Overlaps(CurrSolutionNo)
+        ! --------------------------------------------------------------------------------------------------
   
         IF (MOD(CurrDNA%NumOlaps,2).eq.0) THEN
           IF (.not.QUIET) THEN

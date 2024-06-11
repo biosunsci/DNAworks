@@ -681,7 +681,7 @@ SUBROUTINE Find_Repeats()
   INTEGER :: i,j
   LOGICAL,EXTERNAL :: PairWithinKnownRepeat
 
-  IF (TEST2) PRINT *,"Find_Repeats" !TEST2
+  IF (TEST1) PRINT *,"Find_Repeats" !TEST1
 
   DO i=1,DNAlen
     CurrDNA%RScore(i) = 0

@@ -434,6 +434,30 @@ SUBROUTINE Print_Estimated_Time(SolutionNo)
   CALL FLUSH(console)
 
 END SUBROUTINE Print_Estimated_Time
+SUBROUTINE Print_Overlaps_Array(num)
+  USE dnaworks_data
+  USE dnaworks_test
+  IMPLICIT NONE
+
+  INTEGER :: num,i,s,e
+  ! like the Print_Final_Tally, print the nt2overlap array information
+  
+  IF (TEST0) PRINT *,"Print_Overlaps_Array" !TEST0
+  WRITE(UNIT=num,FMT="(' ')")
+  WRITE(UNIT=num,FMT="(1x,a64)") bar64
+  WRITE(UNIT=num,FMT="('                      OVERLAPS POSITION                       ')") 
+  WRITE(UNIT=num,FMT="(1x,a64)") bar64
+
+  DO i = 1, CurrDNA%NumOlaps
+    s = CurrDNA%OlapsPos(i,1)
+    e = CurrDNA%OlapsPos(i,2)
+    WRITE(UNIT=num,FMT='(i6,a40,i8)') s,CurrDNA%DNAseq(s:e),e
+  END DO
+  WRITE(UNIT=num,FMT="(1x,a64)") bar64
+  WRITE(UNIT=num,FMT="('                    END OVERLAPS POSITION                      ')")
+  WRITE(UNIT=num,FMT="(1x,a64)") bar64
+  
+END SUBROUTINE Print_Overlaps_Array
 SUBROUTINE Print_FinalDNA_Log(num,SolutionNo)
 
   USE dnaworks_data
@@ -1540,6 +1564,9 @@ SUBROUTINE Print_Oligo_Log(num)
       WRITE(UNIT=num,FMT="(i3,1x,a,1x,i3)") i,NewOligo(i)(1:OligoSize(i)),OligoSize(i)
     END IF
   END DO
+  WRITE(UNIT=num,FMT="(1x,a64)") bar64
+  WRITE(UNIT=num,FMT="('        END oligonucleotides list           ')") 
+  
 
 END SUBROUTINE Print_Oligo_Log
 SUBROUTINE Print_Output_End(num)
