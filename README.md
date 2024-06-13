@@ -8,6 +8,8 @@ Automatic oligonucleotide design for PCR-based gene synthesis
  May 04, 2017
  
  DNAWorks takes as input nucleotide and/or protein sequences, codon
+<!-- @import "[TOC]" {cmd="toc" depthFrom=1 depthTo=6 orderedList=false} -->
+
  information, and other variables, and attempts to optimize a synthetic
  gene.  It then outputs the gene with a variety of histograms and metrics
  for judging the probability of success for generating the gene by PCR.  It
@@ -22,6 +24,83 @@ Automatic oligonucleotide design for PCR-based gene synthesis
  
  Kindly reference this publication if you use this for your work.
  
+
+New changes
+======
+
+1. usage change
+  
+  Old usage:
+  ```bash
+    dnaworks [ inputfile ] [ -t0 | -t1 | -t2 | -t3 ]
+  ```
+  Now, you can use inputfile name with path longer than 30 CHRs, like 
+  ```bash
+    dnaworks  inputdir/DNAWORKS_input_config.txt
+  ```
+
+2. in logfile (output file name)
+
+  Now you can set logfile with name more than 30 CHRs, even with path
+  open [ inputfile ], like DNAWORKS.inp
+  modify the line to :
+  ```text
+# LOGFILE "LOGFILE.txt" # default
+logfile "export/CK23700F_L55_M65.txt"
+  ```
+
+3. functional change
+
+  Now the output log includes an additional section to show the overlaps position titled with 
+  e.g.
+
+  ```text
+  ----------------------------------------------------------------
+                        OVERLAPS POSITION                       
+  ----------------------------------------------------------------
+      12                      AAGCTGGGATCGAGCAGG      29
+      60                        CTGCCTGGCGTCCACG      75
+    105                     GGGACCAGTCCTCTCTCCT     123
+    151                      CTGGGAGGCCCTTCCTCA     168
+    194                   GCAAGTTACAGGATCCCTCCT     214
+    237                   GCTCAGTACAAACAGGCATGT     257
+    276               GAACCTTCTGGCATATTTTGTAACG     300
+    318                  GTGTGTTGGCCTCATTCTTCTC     339
+    360                  TGCCCTTCATACTTACCTTGGT     381
+    404                    GGCCTACAGACACTGCTTGG     423
+    447                   GAGAACGCCACGGATATTTGG     467
+    489                  GAGAACCACAGCTTCAAGCAAA     510
+    532                   TGTCAACCTTGCAGCTGATGT     552
+    574                  CTCTTATCTCCCTCTTCCTGGC     595
+    619                     GAAAACTCCACTGCACGCG     637
+    658               TGTTTGCTTCTTTCATCCTGAGAAC     682
+    700                  AGGACGTCGTCTTCTACAACTC     721
+    741                 AATGAGAATGGGTGGATGTCCTA     763
+    787                      GCCGCTCAGTCCAGGTTC     804
+    827                CAATTACTTATGGCTGCTGGTTGA     850
+    873                      CTGGAGCCCACAGTGCTT     890
+    920                       GCTGTTGGGTTGGGCCT     936
+    968                        CGCCCGTGCACACCTG     983
+    1007               AAATGGGAATAAGAAAATCTGGTGG    1031
+    1046               CATGATGCTCTGTGTAACAGTCAAT    1070
+    1083             CTGAAAATTCTCAAGCTTCTCATTTCT    1109
+    1120             CTCATCAAATGTGCTTCAGAGATTATA    1146
+    1161                 AAATCAACACTGGTCCTCATTCC    1183
+    1200               GAGATCCTCTTCTCTTTCATCACTG    1224
+    1237             AAGGATTTGCAAAACTTATACGACTTT    1263
+    1280                   GAGCTCCTTTCATGGGTTCCT    1300
+    1324                    CCAATGGAGAGGTGAAGGCT    1343
+    1370                      CTTGCTAGCCCGCCACTC    1387
+    1413                   AAGGACTTCCGGTTCCTAGGA    1433
+    1458                     GGAGATGGCGCTGAGAAGC    1476
+    1504                      GTGGGCGGCTCCTACATC    1521
+    1552                        CCCAGCCCCAACAGGA    1567
+    1598                      GTCCGAGTGCAGTGAGGG    1615
+    1639                 TGGAGGAGATTCTGGAAGAGAGT    1661
+  ----------------------------------------------------------------
+                      END OVERLAPS POSITION                      
+  ----------------------------------------------------------------
+  ```
 
 Installation
 ============
